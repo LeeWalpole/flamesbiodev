@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/icons";
 import { Loader2 } from "lucide-react";
 import { useFieldArray } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
+
 import {
   Dialog,
   DialogContent,
@@ -15,7 +15,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogClose,
 } from "@/components/ui/dialog";
 import {
   Form,

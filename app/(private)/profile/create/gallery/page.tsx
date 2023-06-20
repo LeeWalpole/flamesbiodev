@@ -6,7 +6,11 @@ export default function CreateGalleryPage() {
 
   return (
     <div>
-      <GalleryForm userId={userId} pushURL="/profile/view" />
+      <GalleryForm
+        formTitle="Gallery"
+        userId={userId}
+        pushURL="/profile/view"
+      />
     </div>
   );
 }

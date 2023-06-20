@@ -12,9 +12,11 @@ import { Icons } from "@/components/icons";
 const ImageUploadForm = ({
   userId,
   pushURL,
+  formTitle,
 }: {
   userId: string;
   pushURL: string;
+  formTitle: string;
 }) => {
   const { images, handleSaveImages, handleImageUpload, handleImageRemove } =
     useGallery(userId);
@@ -27,6 +29,7 @@ const ImageUploadForm = ({
     if (files) {
       const newImages = Array.from(files).map((file) => ({
         id: file.name,
+
         file,
       }));
       handleImageUpload(newImages);
@@ -50,7 +53,7 @@ const ImageUploadForm = ({
             </Button>
           </div>
           <div className="flex h-16 w-full items-center justify-center">
-            <h1 className="text-md mb-2 font-bold">Add Socials</h1>
+            <h1 className="text-md mb-2 font-bold">{formTitle}</h1>
           </div>
           <div className=" flex h-16 w-full items-center justify-end pr-1">
             <Button type="submit" disabled={isSubmitting}>
@@ -120,7 +123,7 @@ const ImageUploadForm = ({
                   <button
                     type="button"
                     onClick={() => handleImageRemove(index)}
-                    className="absolute left-2 top-2 rounded-full bg-red-500 p-2 text-white"
+                    className="absolute right-1 top-1 rounded-full bg-red-500 h-6 w-6 text-white "
                   >
                     X
                   </button>
