@@ -39,10 +39,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
   return (
     <>
-      <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
-        <div>ID: {userId ? userId : "No user"}</div>
-      </section>
-
       {userId && (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>

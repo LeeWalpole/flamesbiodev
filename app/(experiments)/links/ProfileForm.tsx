@@ -6,7 +6,6 @@ import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/icons";
 import { Loader2 } from "lucide-react";
 import { useFieldArray } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 import {
   Dialog,
   DialogContent,
@@ -51,16 +50,16 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
   const [linkUrl, setLinkUrl] = useState("");
   const [linkText, setLinkText] = useState("");
-  const [Weblinks, setWeblinks] = useState([]);
+  const [websites, setWebsites] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const handleAddWeblink = () => {
-    const newWeblink = {
-      linkUrl: linkUrl,
-      linkText: linkText,
+  const handleAddWebsite = () => {
+    const newWebsite = {
+      url: linkUrl,
+      title: linkText,
     };
-    append(newWeblink);
+    setWebsites([...websites, newWebsite]);
     setLinkUrl("");
     setLinkText("");
     setIsDialogOpen(false);
@@ -72,10 +71,10 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     setIsDialogOpen(false);
   };
 
-  const handleDeleteWeblink = (index) => {
-    const updatedWeblinks = [...Weblinks];
-    updatedWeblinks.splice(index, 1);
-    setWeblinks(updatedWeblinks);
+  const handleDeleteWebsite = (index) => {
+    const updatedWebsites = [...websites];
+    updatedWebsites.splice(index, 1);
+    setWebsites(updatedWebsites);
   };
 
   return (
@@ -111,12 +110,12 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
               <Dialog>
                 <DialogTrigger asChild>
                   <Button variant="" className="mb-4 w-full">
-                    Add Weblink
+                    Add Website
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                   <DialogHeader>
-                    <DialogTitle>Add Weblink</DialogTitle>
+                    <DialogTitle>Add Website</DialogTitle>
                     <DialogDescription>
                       Add some links you want to share...
                     </DialogDescription>
@@ -128,7 +127,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                       </Label>
                       <Input
                         id="linkUrl"
-                        type="url"
                         value={linkUrl}
                         onChange={(e) => setLinkUrl(e.target.value)}
                         className="col-span-3"
@@ -151,13 +149,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
                   <DialogFooter>
                     <DialogTrigger>
-                      <Button
-                        type="button"
-                        disabled={!linkText || !linkUrl}
-                        {...(!linkText || !linkUrl
-                          ? {}
-                          : { onClick: handleAddWeblink })}
-                      >
+                      <Button type="button" onClick={handleAddWebsite}>
                         Add Link
                       </Button>
                     </DialogTrigger>
@@ -173,57 +165,31 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 </DialogContent>
               </Dialog>
 
-              <section className="space-y-8">
-                {fields.map((item, index) => (
-                  <div
-                    key={item.id}
-                    className="relative mb-2 flex flex-row gap-4 rounded border p-4"
-                  >
-                    <aside className="absolute right-2 top-2">
+              <div>
+                <ul>
+                  {websites.map((website, index) => (
+                    <li
+                      key={index}
+                      className="relative mb-4 flex flex-col rounded border p-4"
+                    >
+                      <section className="relative flex flex-col gap-1 ">
+                        <h5 className="text-white text-base">
+                          {website.title}
+                        </h5>
+                        <p className="text-slate-500 text-xs">{website.url}</p>
+                      </section>
                       <Button
-                        className="text-slate-500"
+                        className="text-slate-500 absolute right-0 "
                         type="button"
                         variant="danger"
-                        onClick={() => removeLink(index)}
+                        onClick={() => handleDeleteWebsite(index)}
                       >
                         <Icons.close className="h-5 w-5" />
                       </Button>
-                    </aside>
-                    <div className="grid grid-cols-2 w-full items-stretch gap-4">
-                      <FormField
-                        control={form.control}
-                        name={`weblinks.${index}.linkUrl`}
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Link URL</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="https://example.com"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name={`weblinks.${index}.linkText`}
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Link Text</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Link text" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </section>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </section>
           </form>
         </Form>
