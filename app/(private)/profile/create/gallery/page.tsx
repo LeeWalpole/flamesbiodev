@@ -1,15 +1,15 @@
 import { auth } from "@clerk/nextjs";
 import GalleryForm from "./GalleryForm";
 
-export default function CreateGalleryPage() {
+export default function EditProfileGalleryPage() {
   const { userId } = auth();
-
+  const pushURL = "/profile/view/";
   return (
     <div>
       <GalleryForm
-        formTitle="Gallery"
-        userId={userId}
-        pushURL="/profile/view"
+        formTitle="Create Gallery"
+        userId={userId!}
+        pushURL={pushURL!}
       />
     </div>
   );

@@ -256,11 +256,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ userId, pushURL }) => {
                     )}
                   />
 
-                  <Button
-                    type="button"
-                    variant="danger"
-                    onClick={() => removeLink(index)}
-                  >
+                  <Button type="button" onClick={() => removeLink(index)}>
                     Remove Link
                   </Button>
                 </div>

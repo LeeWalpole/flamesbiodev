@@ -9,7 +9,7 @@ export default function EditProfileLinksPage() {
       <ProfileForm
         formTitle="Links Form Title"
         userId={userId!}
-        pushURL="/profile/create/socials"
+        pushURL="/profile/create/gallery"
       />
     </div>
   );

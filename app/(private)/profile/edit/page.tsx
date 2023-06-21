@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <div>
-      <ProfileForm userId={userId} pushURL="/profile/create/gallery" />
+      <ProfileForm userId={userId!} pushURL="/profile/create/gallery" />
     </div>
   );
 }

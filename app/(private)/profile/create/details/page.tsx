@@ -7,8 +7,8 @@ export default function EditProfileDetailsPage() {
   return (
     <div>
       <ProfileForm
-        formTitle="Create Profile"
-        userId={userId}
+        formTitle="Set Profile Details"
+        userId={userId!}
         pushURL="/profile/create/socials"
       />
     </div>

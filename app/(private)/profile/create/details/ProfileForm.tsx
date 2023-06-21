@@ -14,10 +14,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/react-hook-form/form";
-import useProfile from "@/lib/useProfile";
+import useProfile from "@/lib/useCreateProfile";
 
 interface ProfileFormProps {
-  userId?: string; // Make userId optional
+  userId?: string | "" | null; // Make userId optional
   pushURL?: string; // Make the pushURL prop optional
   formTitle?: string;
 }
@@ -32,16 +32,17 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     pushURL || ""
   );
 
-  const defaultValues: Partial<ProfileFormValues> = {
-    username: "",
-    displayName: "",
-  };
-
   return (
     <>
       {userId && (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
+            {isSubmitting && (
+              <div className="fixed top-0 left-0 w-full h-full bg-background bg-opacity-50 flex flex-col justify-center items-center z-50">
+                <p className="text-white m-4">Saving...</p>
+                <Loader2 className="h-12 w-12 animate-spin opacity-25" />
+              </div>
+            )}
             <header className="fixed left-0 top-0 z-40 h-16 w-full border-b bg-background">
               <nav className="grid w-full auto-cols-fr grid-cols-3 px-2">
                 <div className="flex h-16 w-full items-center justify-start">
@@ -73,11 +74,14 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 name="displayName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>displayName</FormLabel>
+                    <FormLabel>Display Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="Display Name..." {...field} />
                     </FormControl>
-                    <FormDescription>displayName</FormDescription>
+                    <FormDescription>
+                      {" "}
+                      Display name is public and can be anything you want.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -88,11 +92,15 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>username</FormLabel>
+                    <FormLabel>Username / Handle</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="Pick username..." {...field} />
                     </FormControl>
-                    <FormDescription>username</FormDescription>
+                    <FormDescription>
+                      {" "}
+                      Your link will be flames.bio/
+                      <span className="text-white">username</span>
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

@@ -25,7 +25,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/react-hook-form/form";
-import useProfile from "@/lib/useProfile";
+import useProfile from "@/lib/useCreateProfile";
 
 interface ProfileFormProps {
   userId?: string; // Make userId optional
@@ -71,7 +71,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     setIsDialogOpen(false);
   };
 
-  const handleDeleteWeblink = (index) => {
+  const handleDeleteWeblink = (index: number) => {
     const updatedWeblinks = [...Weblinks];
     updatedWeblinks.splice(index, 1);
     setWeblinks(updatedWeblinks);
@@ -82,6 +82,14 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
       {userId && (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
+            {/* Add an overlay if submitting */}
+            {isSubmitting && (
+              <div className="fixed top-0 left-0 w-full h-full bg-background bg-opacity-50 flex flex-col justify-center items-center z-50">
+                <p className="text-white m-4">Saving Links</p>
+                <Loader2 className="h-12 w-12 animate-spin opacity-25" />
+              </div>
+            )}
+
             <header className="fixed left-0 top-0 z-40 h-16 w-full border-b bg-background">
               <nav className="grid w-full auto-cols-fr grid-cols-3 px-2">
                 <div className="flex h-16 w-full items-center justify-start">
@@ -109,9 +117,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             <section className="space-y-8">
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button variant="" className="mb-4 w-full">
-                    Add Weblink
-                  </Button>
+                  <Button className="mb-4 w-full">Add Weblink</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                   <DialogHeader>
@@ -179,14 +185,13 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                     className="relative mb-2 flex flex-row gap-4 rounded border p-4"
                   >
                     <aside className="absolute right-2 top-2">
-                      <Button
-                        className="text-slate-500"
+                      <button
+                        className="text-red-500"
                         type="button"
-                        variant="danger"
                         onClick={() => removeLink(index)}
                       >
                         <Icons.close className="h-5 w-5" />
-                      </Button>
+                      </button>
                     </aside>
                     <div className="grid grid-cols-2 w-full items-stretch gap-4">
                       <FormField

@@ -8,8 +8,8 @@ export default function EditProfileSocialsPage() {
     <div>
       <ProfileForm
         formTitle="Create Socials"
-        userId={userId}
-        pushURL="/profile/create/gallery"
+        userId={userId!}
+        pushURL="/profile/create/links"
       />
     </div>
   );

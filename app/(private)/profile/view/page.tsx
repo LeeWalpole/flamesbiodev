@@ -9,22 +9,6 @@ import Link from "next/link";
 
 export default async function HomePage() {
   const user = await currentUser();
-  if (!user)
-    return (
-      <>
-        <div className="flex h-screen justify-center items-center">
-          <div className="text-center flex gap-6">
-            <SignInButton mode="modal" afterSignInUrl="/profile/view/">
-              <Button className="mt-6">Sign In</Button>
-            </SignInButton>
-
-            <SignUpButton mode="modal" afterSignUpUrl="/profile/create/">
-              <Button className="mt-6">Sign Up</Button>
-            </SignUpButton>
-          </div>
-        </div>
-      </>
-    );
   return (
     <>
       <div className="flex h-screen justify-center items-center">

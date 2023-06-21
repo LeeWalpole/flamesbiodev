@@ -1,8 +1,8 @@
-import { auth } from "@clerk/nextjs";
-
-export default function Layout({ children }) {
-  const { userId } = auth();
-
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <section className="m-auto sm:w-[640px] pt-16">
