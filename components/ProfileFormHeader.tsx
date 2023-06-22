@@ -1,14 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { useRouter } from "next/router";
-import { ProfileFormValues } from "./types";
+import { useRouter } from "next/navigation";
+import { ProfileCreateFormHeaderProps } from "@/types/all";
 
-type FormHeaderProps = {
-  formTitle: string;
-  isSubmitting: boolean;
-};
-
-const FormHeader = ({ formTitle, isSubmitting }: FormHeaderProps) => {
+const FormHeader = ({
+  formTitle,
+  isSubmitting,
+}: ProfileCreateFormHeaderProps) => {
   const router = useRouter();
 
   const goBack = () => {

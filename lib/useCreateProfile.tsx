@@ -118,6 +118,7 @@ const useProfile = (userId: string, pushURL: string) => {
 
   // Handle form submission
   const onSubmit = async (data: ProfileFormValues) => {
+    console.log("Form submitted:", data);
     try {
       if (userId) {
         setIsSubmitting(true);

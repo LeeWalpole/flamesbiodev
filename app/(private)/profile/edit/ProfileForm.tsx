@@ -122,11 +122,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ userId, pushURL }) => {
 
   return (
     <>
-      <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
-        <div>ID: {userId ? userId : "No user"}</div>
-      </section>
-
-      {userId && (
+      <section className="container grid items-center gap-6 pb-8 pt-24">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <header className="fixed left-0 top-0 z-40 h-16 w-full border-b bg-background">
@@ -271,7 +267,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ userId, pushURL }) => {
             </section>
           </form>
         </Form>
-      )}
+      </section>
     </>
   );
 };

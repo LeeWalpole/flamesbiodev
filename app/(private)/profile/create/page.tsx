@@ -1,5 +1,3 @@
-import { auth } from "@clerk/nextjs";
-import { buttonVariants } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 

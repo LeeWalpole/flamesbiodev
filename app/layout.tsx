@@ -1,4 +1,3 @@
-// app/layout.tsx
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -18,7 +17,13 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className="dark">
-        <body className={inter.className}>{children}</body>
+        <body
+          className={`min-h-screen bg-blur-lg bg-gradient-to-r from-black from-5% via-slate-900 via-50% to-black to-95% ${inter.className}`}
+        >
+          <main className="relative m-auto flex w-full flex-col items-center justify-center h-screen">
+            {children}
+          </main>
+        </body>
       </html>
     </ClerkProvider>
   );

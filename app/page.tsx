@@ -33,7 +33,7 @@ export default async function HomePage() {
             Hello {user?.firstName} ({user?.emailAddresses[0].emailAddress})
           </h1>
           <Button asChild className="mt-6">
-            <Link href="/profile/view/">View Profile</Link>
+            <Link href="/profile/">Profile</Link>
           </Button>
 
           <SignOutButton>

@@ -1,9 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Icons } from "@/components/icons";
+
 import { Loader2 } from "lucide-react";
-import { useFieldArray } from "react-hook-form";
 
 import {
   Form,
@@ -61,7 +60,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                         Saving...
                       </>
                     ) : (
-                      "Next"
+                      "Next 2"
                     )}
                   </Button>
                 </div>
