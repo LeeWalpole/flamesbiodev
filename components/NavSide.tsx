@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import AuthToggleButton from "@/components/AuthToggleButton";
 import { SheetTrigger } from "@/components/ui/sheet";
 // import Card from "@/components/Card"
 // import SignInOutToggle from "@/components/firebase/SignInOutToggle"
@@ -43,9 +43,10 @@ export default function NavSide() {
             Profile
           </SheetTrigger>
         </Link>
-        <div>{/* <SignInOutToggle /> */}</div>
+        <div>
+          <AuthToggleButton />
+        </div>
       </nav>
-      <br></br>
     </>
   );
 }

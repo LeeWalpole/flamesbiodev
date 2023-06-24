@@ -13,7 +13,7 @@ import * as z from "zod";
 
 // Define the prop types for the ImageUploadForm component
 interface ProfileFormProps {
-  userId?: string;
+  userId: string;
   pushURL?: string;
   formTitle?: string;
 }

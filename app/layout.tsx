@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
+import NavTop from "@/components/NavTop";
+import NavBottom from "@/components/NavBottom";
+import { AuthProvider } from "@/lib/(auth)/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,16 +17,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" className="dark">
-        <body
-          className={`min-h-screen bg-blur-lg bg-gradient-to-r from-black from-5% via-slate-900 via-50% to-black to-95% ${inter.className}`}
-        >
-          <main className="relative m-auto flex w-full flex-col items-center justify-center h-screen">
+    <html lang="en" className="dark">
+      <body
+        className={`min-h-screen  bg-blur-lg bg-gradient-to-r from-5% from-slate-900 via-black via-50% to-slate-900 to-95% ${inter.className}`}
+      >
+        <AuthProvider>
+          <NavTop />
+          <main className="relative m-auto flex w-full flex-col items-center justify-center h-screen pb-16">
             {children}
           </main>
-        </body>
-      </html>
-    </ClerkProvider>
+          <NavBottom />
+        </AuthProvider>
+      </body>
+    </html>
   );
 }

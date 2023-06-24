@@ -1,9 +1,10 @@
 "use client";
 import useViewProfile from "@/lib/useViewProfile";
+
 import ProfileLinks from "./view/ProfileLinks";
 import ProfileSocials from "./view/ProfileSocials";
 import ProfileHeader from "./view/ProfileHeader";
-
+import { useAuth } from "@/lib/(auth)/useAuth";
 import Image from "next/image";
 import Link from "next/link";
 import { Icons } from "@/components/icons";
@@ -20,12 +21,21 @@ import {
 import { Button } from "@/components/ui/button";
 import Swiper from "@/components/Swiper";
 
-export default function ProfileSection({ userId }: { userId: string }) {
+interface ProfileSectionProps {
+  userId: string;
+}
+
+export default function ProfileSection({}: ProfileSectionProps) {
+  const { user } = useAuth();
+  const userId = user!.uid;
   const { profileData } = useViewProfile(userId);
+
+  // Render loading state while profile data is being fetched
   if (!profileData) {
     return <div>Loading...</div>;
   }
 
+  // Extract necessary data from the profileData object
   const { displayName, username, images, socials, weblinks } = profileData;
   const renderSwiper =
     images.length > 0 ? (

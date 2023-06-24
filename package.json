@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.21.6",
+    "@firebase/firestore": "^3.13.0",
     "@hookform/resolvers": "^3.1.1",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-avatar": "^1.0.3",
@@ -32,7 +33,7 @@
     "clsx": "^1.2.1",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.6",
-    "firebase": "^9.22.2",
+    "firebase": "^9.23.0",
     "firebase-admin": "^11.9.0",
     "lucide-react": "^0.246.0",
     "next": "13.4.6",

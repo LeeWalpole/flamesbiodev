@@ -76,7 +76,7 @@ const FormSchema = z.object({
     .optional(),
 });
 
-const useProfile = (userId: string, pushURL: string) => {
+const useCreateProfile = (userId: string, pushURL: string) => {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<ProfileFormValues>({
@@ -152,4 +152,4 @@ const useProfile = (userId: string, pushURL: string) => {
   };
 };
 
-export default useProfile;
+export default useCreateProfile;

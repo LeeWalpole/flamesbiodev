@@ -1,4 +1,5 @@
 "use client";
+import { useAuth } from "@/lib/(auth)/useAuth";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -6,17 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 
 type LinkData = {
   linkUrl: string;
@@ -48,7 +38,10 @@ const formSchema = z.object({
   }),
 });
 
-export function useCreateProfileForm(userId: string, pushURL: string) {
+export function useCreateProfileForm(pushURL: string) {
+  const { user } = useAuth();
+  const userId = user!.uid;
+  console.log("user ID:" + userId);
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -63,11 +56,13 @@ export function useCreateProfileForm(userId: string, pushURL: string) {
   });
 
   const router = useRouter();
+
   const { handleSubmit, setValue, control } = form;
   const [isSaving, setIsSaving] = useState(false);
-
+  console.log("user ID:" + userId);
   useEffect(() => {
     // Fetch the existing profile data if available
+
     const fetchProfileData = async () => {
       try {
         const profileDocRef = doc(db, "profiles", userId);

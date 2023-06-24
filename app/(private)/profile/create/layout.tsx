@@ -5,8 +5,8 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <section className="m-auto sm:w-[640px] pt-16">
-        <div className="m-auto sm:w-[640px] mt-8">{children}</div>
+      <section className="m-auto sm:w-[640px] ">
+        <div className="m-auto sm:w-[640px]">{children}</div>
       </section>
     </>
   );
